@@ -3,9 +3,10 @@ Description=Sets WD USB External HD to sleep at specified idle time
 
 [Service]
 Type=simple
-Environment=DRIVES_TO_SLEEP=/dev/sdc
-Environment=IDLE_TIME=600
-ExecStart=/usr/sbin/hd-idle -d -i $IDLE_TIME $DRIVES_TO_SLEEP -l /var/log/hd-idle.log
+Environment=DRIVE_TO_SLEEP_1=sdc1
+Environment=DRIVE_TO_SLEEP_2=sdd1
+Environment=IDLE_TIME=900
+ExecStart=/usr/sbin/hd-idle -i $IDLE_TIME -a $DRIVE_TO_SLEEP_1 -i $IDLE_TIME -a $DRIVE_TO_SLEEP_2 -l /var/log/hd-idle.log
 ExecReload=/bin/kill -HUP hd-idle
 
 [Install]
